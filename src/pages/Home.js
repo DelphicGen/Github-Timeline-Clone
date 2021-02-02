@@ -24,7 +24,7 @@ const Home = () => {
         const tempCommits = {}
         repos.forEach(repo => {
             axios
-                .get(`https://api.github.com/repos/DelphicGen/${repo.name}/commits?access_token=${process.env.REACT_APP_GITHUB_TOKEN}`)
+                .get(`https://api.github.com/repos/DelphicGen/${repo.name}/commits`)
                 .then(response => {
                     response.data?.forEach(commit => {
                         const d = new Date(commit.commit.author.date);
@@ -33,9 +33,10 @@ const Home = () => {
 
                         tempCommits[result] ? tempCommits[result].push(commit) : tempCommits[result] = [commit]
                     })
-                    setCommits(tempCommits);
                 })
         })
+        console.log(tempCommits)
+        setCommits(tempCommits);
 
     }, [repos])
 

@@ -46,7 +46,6 @@ const Contribution = ({commits}) => {
             
             tempDateHelper[d.getDay()].push(result)
         }
-
         setDateHelper(tempDateHelper)
 
     }, [])
