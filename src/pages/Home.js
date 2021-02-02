@@ -22,21 +22,20 @@ const Home = () => {
 
     useEffect(() => {
         const tempCommits = {}
-        // repos.forEach(repo => {
-            // repos.length > 0 && axios
-            //     .get(`https://api.github.com/repos/DelphicGen/${repos[0].name}/commits`)
-            //     .then(response => {
-            //         response.data.forEach(commit => {
-            //             const d = new Date(commit.commit.author.date);
-            //             const year = d.getFullYear(), month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1), date = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
-            //             const result = `${year}-${month}-${date}`
+        repos.forEach(repo => {
+            axios
+                .get(`https://api.github.com/repos/DelphicGen/${repo.name}/commits?access_token=${process.env.REACT_APP_GITHUB_TOKEN}`)
+                .then(response => {
+                    response.data?.forEach(commit => {
+                        const d = new Date(commit.commit.author.date);
+                        const year = d.getFullYear(), month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1), date = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
+                        const result = `${year}-${month}-${date}`
 
-            //             tempCommits[result] ? tempCommits[result].push(commit) : tempCommits[result] = [commit]
-            //         })
-            //         console.log(tempCommits)
-            //         setCommits(tempCommits);
-            //     })
-        // })
+                        tempCommits[result] ? tempCommits[result].push(commit) : tempCommits[result] = [commit]
+                    })
+                    setCommits(tempCommits);
+                })
+        })
 
     }, [repos])
 
@@ -51,7 +50,7 @@ const Home = () => {
                     value={query} 
                     placeholder="Search for any username..."
                 />
-                <Contribution />
+                <Contribution commits={commits} />
 
             </Container>
         </div>
