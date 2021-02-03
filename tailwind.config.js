@@ -32,7 +32,8 @@ module.exports = {
     variants: {
       extend: {
         transformOrigin: ['focused-sibling'],
-        scale: ['focused-sibling']
+        scale: ['focused-sibling'],
+        display: ['group-hover']
       }
     },
     plugins: [focusedSiblingPlugin],

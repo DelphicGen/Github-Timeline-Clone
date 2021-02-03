@@ -10,35 +10,52 @@ const Home = () => {
     const [commits, setCommits] = useState({})
     const [repos, setRepos] = useState([])
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        axios
-            .get('https://api.github.com/users/DelphicGen/repos')
-            .then(response => {
-                setRepos(response.data)
-            })
+    //     axios
+    //         .get('https://api.github.com/users/DelphicGen/repos')
+    //         .then(response => {
+    //             setRepos(response.data)
 
-    }, [])
+    //             const tempCommits = {}
+    //             response.data.forEach(repo => {
+    //                 axios
+    //                     .get(`https://api.github.com/repos/DelphicGen/${repo.name}/commits`)
+    //                     .then(response => {
+    //                         response.data?.forEach(commit => {
+    //                             const d = new Date(commit.commit.author.date);
+    //                             const year = d.getFullYear(), month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1), date = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
+    //                             const result = `${year}-${month}-${date}`
 
-    useEffect(() => {
-        const tempCommits = {}
-        repos.forEach(repo => {
-            axios
-                .get(`https://api.github.com/repos/DelphicGen/${repo.name}/commits`)
-                .then(response => {
-                    response.data?.forEach(commit => {
-                        const d = new Date(commit.commit.author.date);
-                        const year = d.getFullYear(), month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1), date = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
-                        const result = `${year}-${month}-${date}`
+    //                             tempCommits[result] ? tempCommits[result].push(commit) : tempCommits[result] = [commit]
+    //                         })
+    //                     })
+    //             })
+    //             console.log(tempCommits)
+    //             setCommits(tempCommits);
+    //         })
 
-                        tempCommits[result] ? tempCommits[result].push(commit) : tempCommits[result] = [commit]
-                    })
-                })
-        })
-        console.log(tempCommits)
-        setCommits(tempCommits);
+    // }, [])
 
-    }, [repos])
+    // useEffect(() => {
+    //     const tempCommits = {}
+    //     repos.forEach(repo => {
+    //         axios
+    //             .get(`https://api.github.com/repos/DelphicGen/${repo.name}/commits`)
+    //             .then(response => {
+    //                 response.data?.forEach(commit => {
+    //                     const d = new Date(commit.commit.author.date);
+    //                     const year = d.getFullYear(), month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1), date = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
+    //                     const result = `${year}-${month}-${date}`
+
+    //                     tempCommits[result] ? tempCommits[result].push(commit) : tempCommits[result] = [commit]
+    //                 })
+    //             })
+    //     })
+    //     console.log(tempCommits)
+    //     setCommits(tempCommits);
+
+    // }, [repos])
 
     return (
         <div>
@@ -51,7 +68,9 @@ const Home = () => {
                     value={query} 
                     placeholder="Search for any username..."
                 />
-                <Contribution commits={commits} />
+                {
+                    commits && <Contribution commits={commits} />
+                }
 
             </Container>
         </div>

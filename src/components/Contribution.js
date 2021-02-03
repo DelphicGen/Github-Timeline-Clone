@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import Rectangle from './atomic/Rectangle';
 
-const Contribution = ({commits}) => {
+const Contribution = ({ commits }) => {
     const [dateHelper, setDateHelper] = useState({})
 
-    let prevMonth = ''
-    const currentD = new Date()
-    const currentYear = currentD.getFullYear(), currentMonth = currentD.getMonth(), currentDate = currentD.getDate()
+    const currentD = useMemo(() => new Date(), [])
     
-    const temp = new Date(currentYear - 1, currentMonth, currentDate)
-    const tempY = temp.getFullYear(), tempM = temp.getMonth() + 1 < 10 ? '0' + (temp.getMonth() + 1) : (temp.getMonth() + 1), tempD = temp.getDate() < 10 ? '0' + temp.getDate() : temp.getDate()
-    const firstD = `${tempY}-${tempM}-${tempD}`
+    const temp = useMemo(() => {
+        const currentYear = currentD.getFullYear(), currentMonth = currentD.getMonth(), currentDate = currentD.getDate()
+        return new Date(currentYear - 1, currentMonth, currentDate)
+    }, [currentD])
+
+    const firstD = useMemo(() => {
+        const tempY = temp.getFullYear(), tempM = temp.getMonth() + 1 < 10 ? '0' + (temp.getMonth() + 1) : (temp.getMonth() + 1), tempD = temp.getDate() < 10 ? '0' + temp.getDate() : temp.getDate()
+        return `${tempY}-${tempM}-${tempD}`
+    }, [temp])
+
+    let prevMonth = ''
     let gotFirstD = false
     
     const month = {
@@ -74,7 +80,7 @@ const Contribution = ({commits}) => {
                                             <div 
                                             key={date}className="relative">
                                                 {dateKey === '0' && (month[date.slice(5, 7)] !== prevMonth ? prevMonth = month[date.slice(5, 7)] : false) && <span className="text-xs text-white absolute" style={{top: '-180%'}} >{month[date.slice(5, 7)]}</span>}
-                                                <Rectangle empty={(index === 0 && date !== firstD && !gotFirstD)} freq={commits[date] ? commits[date].length : 0} />
+                                                <Rectangle empty={(index === 0 && date !== firstD && !gotFirstD)} freq={commits[date] ? commits[date].length : 0} date={date} />
                                             </div>
                                         )
                                     })
@@ -83,6 +89,14 @@ const Contribution = ({commits}) => {
                         )
                     })
                 }
+                <div className="flex justify-end items-center mt-2">
+                    <span className="text-white mr-3 text-sm">Less</span>
+                    <div style={{width: '10px', height: '10px'}} className={`mx-1 bg-black`}></div>
+                    <div style={{width: '10px', height: '10px'}} className={`mx-1 bg-green-300`}></div>
+                    <div style={{width: '10px', height: '10px'}} className={`mx-1 bg-yellow-400`}></div>
+                    <div style={{width: '10px', height: '10px'}} className={`mx-1 bg-green-400`}></div>
+                    <span className="text-white ml-3 text-sm">More</span>
+                </div>
             </div>
         </div>
     )
