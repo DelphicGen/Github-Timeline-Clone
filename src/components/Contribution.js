@@ -59,7 +59,7 @@ const Contribution = ({ commits }) => {
     return (
         <div className="pt-10 pb-4 overflow-x-hidden ">
             <div className="float-right flex">
-                <div className="flex flex-col text-white text-xs mr-5">
+                <div className="flex flex-col text-white mr-5" style={{ fontSize: '10px' }}>
                     <span style={{width: '10px', height: '10px'}}></span>
                     <span className="mb-1">Mon</span>
                     <span style={{width: '10px', height: '10px'}}></span>
@@ -79,7 +79,7 @@ const Contribution = ({ commits }) => {
                                             if(date === firstD) gotFirstD = true
                                             return (
                                                 <div key={date} className="relative">
-                                                    {dateKey === '0' && (month[date.slice(5, 7)] !== prevMonth ? prevMonth = month[date.slice(5, 7)] : false) && <span className="text-xs text-white absolute" style={{top: '-180%'}} >{month[date.slice(5, 7)]}</span>}
+                                                    {dateKey === '0' && (month[date.slice(5, 7)] !== prevMonth ? prevMonth = month[date.slice(5, 7)] : false) && <span className="text-xs text-white absolute" style={{ top: '-180%', fontSize: '10px' }} >{month[date.slice(5, 7)]}</span>}
                                                     <Rectangle empty={(index === 0 && date !== firstD && !gotFirstD)} freq={commits[date] ? commits[date].length : 0} date={date} />
                                                 </div>
                                             )
