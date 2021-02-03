@@ -77,8 +77,7 @@ const Contribution = ({ commits }) => {
                                     dateHelper[dateKey].map((date, index) => {
                                         if(date === firstD) gotFirstD = true
                                         return (
-                                            <div 
-                                            key={date}className="relative">
+                                            <div key={date} className="relative">
                                                 {dateKey === '0' && (month[date.slice(5, 7)] !== prevMonth ? prevMonth = month[date.slice(5, 7)] : false) && <span className="text-xs text-white absolute" style={{top: '-180%'}} >{month[date.slice(5, 7)]}</span>}
                                                 <Rectangle empty={(index === 0 && date !== firstD && !gotFirstD)} freq={commits[date] ? commits[date].length : 0} date={date} />
                                             </div>

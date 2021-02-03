@@ -8,9 +8,9 @@ const Rectangle = ({ empty, freq, date }) => {
 
                 </div>
             }
-            <div style={{width: '10px', height: '10px'}} className={`${freq === 0 ? 'bg-black' : (freq <= 5 ? 'bg-green-300' : freq <= 7 ? 'bg-yellow' : 'bg-green-400')} mr-1 mb-1 cursor-pointer relative group`}>
+            <div style={{width: '10px', height: '10px'}} className={`${freq === 0 ? 'bg-black' : (freq <= 5 ? 'bg-green-300' : freq <= 7 ? 'bg-yellow-400' : 'bg-green-400')} mr-1 mb-1 cursor-pointer relative group`}>
                 <p style={{ top: '150%' }} className={`absolute text-xs z-10 bg-gray-900 rounded-md text-white text-center p-2 hidden group-hover:block`}>
-                    { date }
+                    { date }, { freq } {freq === 0 ? ' commit' : ' commits'}
                 </p>
             </div>
         </div>

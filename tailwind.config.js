@@ -22,7 +22,7 @@ module.exports = {
           'blue-600': '#0862ac',
           'green-300': '#5CFF67',
           'green-400': '#C7E848',
-          'yellow-400': '#FFDD4F'
+          'yellow-400': '#FFDD4F',
         },
         width: {
           'fit-content': 'fit-content'
