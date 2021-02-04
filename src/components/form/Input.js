@@ -2,7 +2,7 @@ import React from 'react'
 
 const Input = ({ name, type, required, value, onChange, placeholder, className }) => {
     return (
-        <>
+        <div>
             <input 
                 name={name} 
                 value={value} 
@@ -14,7 +14,7 @@ const Input = ({ name, type, required, value, onChange, placeholder, className }
                 required={required ? true : false} 
             /> 
             <div className={`transform scale-x-0 focused-sibling:scale-x-100 focused-sibling:origin-right border-b border-blue-600 duration-200 ease-in-out ${className && className}`}></div>
-        </>
+        </div>
     )
 }
 
