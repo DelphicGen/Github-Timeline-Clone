@@ -115,14 +115,14 @@ const Contribution = ({ commits }) => {
             {
                 timeline && (
                     <div className="timeline text-white mt-8">
-                        <h3 className="font-bold text-xl border-b-4 border-gray-400 pb-2 mb-5">{selectedDate}</h3>
+                        <h3 className="font-bold text-xl border-b-4 border-blue-600 pb-2 mb-5">{selectedDate}</h3>
                             {
                                 timeline.length === 0 ? <h5>Not commits during this period.</h5> : (
                                     <ul>
                                         {
                                             timeline.map((commit, index) => (
-                                                <li key={index} className={`${styles.timeline__commit} relative w-1 pt-10 bg-gray-400`}>
-                                                    <div className={`${styles.timeline__content} relative w-80 bg-gray-400 text-black font-bold py-5 px-10 ml-8 rounded-md`}>
+                                                <li key={index} className={`${styles.timeline__commit} relative w-1 pt-10 bg-blue-600`}>
+                                                    <div className={`${styles.timeline__content} relative w-80 bg-blue-600 text-white font-bold py-5 px-10 ml-8 rounded-md`}>
                                                         <h5>{commit.time}</h5>
                                                         <h5>{commit.message}</h5>
                                                     </div>
