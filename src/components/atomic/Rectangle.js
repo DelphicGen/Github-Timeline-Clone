@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { month } from '../../constants/constants'
 
-const Rectangle = ({ empty, freq, date, clickHandler }) => {
-
-    const [stringDate, setStringDate] = useState('')
-    
-    useEffect(() => {
-        const tempDate = `${date.slice(8,10)} ${month[date.slice(5, 7)]}, ${date.slice(0,4)}`
-        setStringDate(tempDate)
-    }, [date])
+const Rectangle = ({ empty, freq, stringDate, clickHandler }) => {
 
     return (
         <div className="flex">

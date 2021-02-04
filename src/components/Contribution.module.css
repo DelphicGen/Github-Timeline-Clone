@@ -1,0 +1,23 @@
+.timeline__commit::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: inherit;
+}
+
+.timeline__content::before {
+    content: '';
+    position: absolute;
+    bottom: 7px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    left: -16px;
+    border-width: 8px 16px 8px 0;
+    border-color: transparent rgba(156, 163, 175) transparent transparent;
+}

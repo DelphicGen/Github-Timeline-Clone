@@ -61,11 +61,9 @@ const Home = () => {
                     value={query} 
                     placeholder="Search for any username..."
                 />
-                <div className="mt-10 border border-gray-400 px-5 rounded-md max-w-full w-fit-content mx-auto">
-                    {
-                        Object.keys(commits).length > 0 && <Contribution commits={commits} />
-                    }
-                </div>
+                {
+                    Object.keys(commits).length > 0 && <Contribution commits={commits} />
+                }
 
             </Container>
         </div>
